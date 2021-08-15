@@ -1,8 +1,11 @@
 import numpy as np
 
+
 class LinearRegression:
     def __init__(self, alpha=0):
+        self.weights = None
         self.alpha = alpha
+
     def fit(self, x, y):
         n_samples, n_features = x.shape
         x_b = np.c_[np.ones((n_samples, 1)), x]
