@@ -1,7 +1,7 @@
 import numpy as np
 
 class LogisticRegression:
-    def __init__(self, lr=0.001, n_iters=1000):
+    def __init__(self, lr=0.01, n_iters=1000):
         self.lr = lr
         self.n_iters = n_iters
         self.weights = None
@@ -30,23 +30,3 @@ class LogisticRegression:
 
     def _sigmoid(self, x):
         return 1/(1+np.exp(-x))
-
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
-from logistic_regression import LogisticRegression
-
-
-def accuracy(y_true, y_pred):
-    accuracy = np.sum(y_true == y_pred) / len(y_true)
-    return accuracy
-
-data = load_breast_cancer()
-X = data.data
-y = data.target
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
-
-clf = LogisticRegression(lr=0.0001)
-clf.fit(X_train, y_train)
-y_pred = clf.predict(X_test)
-print(accuracy(y_test, y_pred))
