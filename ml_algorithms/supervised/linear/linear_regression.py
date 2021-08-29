@@ -12,6 +12,7 @@ class LinearRegression:
         reg_term = self.alpha*np.eye(n_features+1)
         reg_term[0, 0] = 0
         self.weights = np.linalg.inv(x_b.T.dot(x_b)+reg_term).dot(x_b.T).dot(y)
+
         return self
     
     def predict(self, x):

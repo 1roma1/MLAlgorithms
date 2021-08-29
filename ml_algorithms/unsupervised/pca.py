@@ -6,51 +6,19 @@ class PCA:
         self.components = None
         self.mean = None
 
-    def fit(self, X):
-        self.mean = np.mean(X, axis=0)
-        X = X - self.mean
+    def fit(self, x):
+        self.mean = np.mean(x, axis=0)
+        x = x - self.mean
 
-        cov = np.cov(X.T)
+        cov = np.cov(x.T)
 
         eigenvalues, eigenvectors = np.linalg.eig(cov)
         eigenvectors = eigenvectors.T
         idxs = np.argsort(eigenvalues)[::-1]
-        eigenvalues = eigenvalues[idxs]
         eigenvectors = eigenvectors[idxs]
 
         self.components = eigenvectors[0:self.components]
 
-    def transform(self, X):
-        X = X - self.mean
-        return np.dot(X, self.components.T)
-
-from sklearn import datasets
-import matplotlib.pyplot as plt
-
-data = datasets.load_iris()
-X = data.data
-y = data.target
-
-pca = PCA(2)
-pca.fit(X)
-X_projected = pca.transform(X)
-
-print('Shape of X:', X.shape)
-print('Shape of transformed X:', X_projected.shape)
-
-x1 = X_projected[:, 0]
-x2 = X_projected[:, 1]
-
-plt.scatter(x1, x2,
-            c=y, edgecolors='none', alpha=0.8,
-            cmap=plt.cm.get_cmap('viridis', 3))
-
-plt.xlabel('Principal Component 1')
-plt.ylabel('Principal Component 2')
-plt.colorbar()
-plt.show()
-
-
-
-
-
+    def transform(self, x):
+        x = x - self.mean
+        return np.dot(x, self.components.T)

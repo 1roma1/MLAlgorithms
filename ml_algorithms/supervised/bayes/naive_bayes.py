@@ -1,24 +1,25 @@
 import numpy as np
 
-class NaiveBayes:
-    def fit(self, X, y):
-        n_samples, n_features = X.shape[0], X.shape[1]
+
+class NaiveBayesClassifier:
+    def fit(self, x, y):
+        n_samples, n_features = x.shape
         self._classes = np.unique(y)
         n_classes = len(self._classes)
 
-        self._mean = np.zeros((n_classes, n_features), dtype=np.float64)
-        self._var = np.zeros((n_classes, n_features), dtype=np.float64)
-        self._priors = np.zeros(n_classes, dtype=np.float64)
+        self._mean = np.zeros((n_classes, n_features))
+        self._var = np.zeros((n_classes, n_features))
+        self._priors = np.zeros(n_classes)
 
         for c in self._classes:
-            X_c = X[c==y]
-            self._mean[c,:] = X_c.mean(axis=0)
-            self._var[c,:] = X_c.var(axis=0)
-            self._priors[c] = X_c.shape[0] / float(n_samples)
+            x_c = x[c == y]
+            self._mean[c, :] = x_c.mean(axis=0)
+            self._var[c, :] = x_c.var(axis=0)
+            self._priors[c] = x_c.shape[0] / float(n_samples)
             
-    def predict(self, X):
-        y_predict = [self._predict(x) for x in X]
-        return y_predict
+    def predict(self, x):
+        y_pred = [self._predict(sample) for sample in x]
+        return y_pred
 
     def _predict(self, x):
         posteriors = []
@@ -34,6 +35,7 @@ class NaiveBayes:
     def _pdf(self, class_idx, x):
         mean = self._mean[class_idx]
         var = self._var[class_idx]
-        numerator = np.exp(-(x-mean)**2/(2*var)) 
+        numerator = np.exp(-(x-mean)**2/(2*var))
         denominator = np.sqrt(2*np.pi*var)
+
         return numerator / denominator
