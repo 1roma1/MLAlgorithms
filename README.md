@@ -15,7 +15,7 @@ Implementations of basic machine learning algorithms.
 * [PCA](ml_algorithms/unsupervised/pca.py)
 * [K-Means](ml_algorithms/unsupervised/kmeans.py)
 
-##**Examples**
+## **Examples**
 ![image](examples/figures/linear_regression_plot.png)
 ![image](examples/figures/linear_svm_boundary.png)
 ![image](examples/figures/decision_tree_boundary.png)
