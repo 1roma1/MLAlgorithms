@@ -2,13 +2,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_classification
 from sklearn.metrics import accuracy_score
 
-from ml_algorithms.supervised.linear.logistic_regression import LogisticRegression
-from ml_algorithms.supervised.neighbors.knn import KNNClassifier
-from ml_algorithms.supervised.bayes.naive_bayes import NaiveBayesClassifier
-from ml_algorithms.supervised.svm.svm import SVM
-from ml_algorithms.supervised.ensemble.decision_tree import DecisionTree
-from ml_algorithms.supervised.ensemble.random_forest import RandomForest
-from ml_algorithms.supervised.ensemble.adaboost import AdaBoost
+from ml_algorithms.supervised.logistic_regression import LogisticRegression
+from ml_algorithms.supervised.neighbors import KNNClassifier
+from ml_algorithms.supervised.naive_bayes import NaiveBayesClassifier
+from ml_algorithms.supervised.svm import SVM
+from ml_algorithms.supervised.tree import DecisionTree
+from ml_algorithms.supervised.ensemble import RandomForest
+from ml_algorithms.supervised.boosting import AdaBoost
 
 X, y = make_classification(
     n_samples=1000, n_features=10, n_informative=8, n_classes=2, n_redundant=0
@@ -69,10 +69,10 @@ def run_classification_test():
     test_logistic_regression()
     test_knn_classifier()
     test_naive_bayes()
-    # test_svm()
-    # test_decision_tree()
-    # test_random_forest()
-    # test_adaboost()
+    test_svm()
+    test_decision_tree()
+    test_random_forest()
+    test_adaboost()
 
 
 if __name__ == "__main__":

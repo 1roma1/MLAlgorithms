@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from sklearn.datasets import make_moons
 
-from ml_algorithms.supervised.ensemble.decision_tree import DecisionTree
+from ml_algorithms.supervised.tree import DecisionTree
 
 def plot_decision_boundary(clf, X, y, axes=[0, 7.5, 0, 3], iris=True, legend=False, plot_training=True):
     x1s = np.linspace(axes[0], axes[1], 100)
@@ -37,5 +37,6 @@ deep_tree_clf1 = DecisionTree(min_samples_split=10)
 deep_tree_clf1.fit(Xm, ym)
 
 plot_decision_boundary(deep_tree_clf1, Xm, ym, axes=[-1.5, 2.4, -1, 1.5], iris=False)
+plt.title("Decision Tree Boundary", fontsize=14)
 plt.savefig('figures/decision_tree_boundary.png')
 plt.show()

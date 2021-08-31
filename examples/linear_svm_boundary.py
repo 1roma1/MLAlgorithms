@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from sklearn.datasets import load_iris
-from ml_algorithms.supervised.svm.svm import LinearSVM
+from ml_algorithms.supervised.svm import LinearSVM
 
 iris = load_iris()
 
@@ -19,8 +19,6 @@ def plot_svc_decision_boundary(svm_clf, xmin, xmax):
     w = svm_clf.coef_[0]
     b = svm_clf.intercept_[0]
 
-    # At the decision boundary, w0*x0 + w1*x1 + b = 0
-    # => x1 = -w0/w1 * x0 - b/w1
     x0 = np.linspace(xmin, xmax, 200)
     decision_boundary = -w[0]/w[1] * x0 - b/w[1]
 
@@ -39,7 +37,7 @@ plt.plot(x[:, 0][yr==0], x[:, 1][yr==0], "bs", label="Not Iris virginica")
 plot_svc_decision_boundary(model, 4, 6)
 plt.xlabel("Petal length", fontsize=14)
 plt.ylabel("Petal width", fontsize=14)
-plt.title("LinearSVC", fontsize=14)
+plt.title("Linear SVM", fontsize=14)
 plt.axis([4, 6, 0.8, 2.8])
 plt.savefig('figures/linear_svm_boundary.png')
 plt.show()

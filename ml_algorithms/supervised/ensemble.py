@@ -1,6 +1,6 @@
 import numpy as np
 from collections import Counter
-from .decision_tree import DecisionTree
+from .tree import DecisionTree
 
 def bootstrap_sample(x, y):
     n_samples = x.shape[0]

@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
-from ml_algorithms.supervised.linear.logistic_regression import LogisticRegression
+from ml_algorithms.supervised.linear import LogisticRegression
 
 iris = load_iris()
 
