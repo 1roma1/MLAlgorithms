@@ -1,6 +1,6 @@
-#**Machine Learning Algorithms**
+# **Machine Learning Algorithms**
 Implementations of basic machine learning algorithms.
-##**Algoritms**
+## **Algoritms**
 **Supervised**
 * [Linear Regression](ml_algorithms/supervised/linear.py)
 * [Logistic Regression](ml_algorithms/supervised/linear.py)
