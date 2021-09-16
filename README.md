@@ -10,6 +10,7 @@ Implementations of basic machine learning algorithms.
 * [Decision Tree](ml_algorithms/supervised/tree.py)
 * [Random Forest](ml_algorithms/supervised/ensemble.py)
 * [Ada Boost](ml_algorithms/supervised/boosting.py)
+* [Gradient Boosting](ml_algorithms/supervised/boosting.py)
 
 **Usupervised**
 * [PCA](ml_algorithms/unsupervised/pca.py)

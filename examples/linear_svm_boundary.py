@@ -16,8 +16,8 @@ model.fit(x, y)
 yr = y.ravel()
 
 def plot_svc_decision_boundary(svm_clf, xmin, xmax):
-    w = svm_clf.coef_[0]
-    b = svm_clf.intercept_[0]
+    w = svm_clf.weights[0]
+    b = svm_clf.bias[0]
 
     x0 = np.linspace(xmin, xmax, 200)
     decision_boundary = -w[0]/w[1] * x0 - b/w[1]

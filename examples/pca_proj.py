@@ -24,5 +24,6 @@ for x_transformed, title in [(x_pca, "PCA")]:
     plt.title(title + " of iris dataset")
     plt.legend(loc="best", shadow=False, scatterpoints=1)
     plt.axis([-4, 4, -1.5, 1.5])
+    
 plt.savefig('figures/pca_proj.png')
 plt.show()

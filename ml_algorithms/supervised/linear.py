@@ -8,16 +8,16 @@ class LinearRegression:
 
     def fit(self, x, y):
         n_samples, n_features = x.shape
-        x_b = np.c_[np.ones((n_samples, 1)), x]
+        x = np.c_[np.ones((n_samples, 1)), x]
         reg_term = self.alpha * np.eye(n_features + 1)
         reg_term[0, 0] = 0
-        self.weights = np.linalg.inv(x_b.T.dot(x_b) + reg_term).dot(x_b.T).dot(y)
+        self.weights = np.linalg.inv(x.T.dot(x) + reg_term).dot(x.T).dot(y)
 
         return self
 
     def predict(self, x):
-        x_b = np.c_[np.ones((x.shape[0], 1)), x]
-        return x_b.dot(self.weights)
+        x = np.c_[np.ones((x.shape[0], 1)), x]
+        return x.dot(self.weights)
 
 
 class LogisticRegression:
@@ -45,6 +45,7 @@ class LogisticRegression:
     def predict(self, x):
         y_predicted = self._sigmoid(np.dot(x, self.weights) + self.bias)
         y_predicted_cls = [1 if i > 0.5 else 0 for i in y_predicted]
+        
         return y_predicted_cls
 
     def _sigmoid(self, x):
@@ -61,17 +62,17 @@ class GradientDescent:
 
     def fit(self, x, y):
         n_samples, n_features = x.shape
-        x_b = np.c_[np.ones((n_samples, 1)), x]
+        x = np.c_[np.ones((n_samples, 1)), x]
         self.theta = np.random.randn(n_features+1, 1)
         y = y.reshape((n_samples, 1))
 
-        grad_func = self._get_gradients()
+        grad_func = self._get_grad_func()
 
         for iteration in range(self.n_iterations):
-            gradients = grad_func(x_b, y)
+            gradients = grad_func(x, y)
             self.theta = self.theta - self.lr * gradients
 
-    def _get_gradients(self):
+    def _get_grad_func(self):
         def l1_grads(x, y):
             return 2/x.shape[0] * x.T.dot(x.dot(self.theta) - y)+self.alpha*np.sign(self.theta)
 
@@ -89,5 +90,6 @@ class GradientDescent:
             return without_penalty_grads
 
     def predict(self, x):
-        x_b = np.c_[np.ones((x.shape[0], 1)), x]
-        return x_b.dot(self.theta)
+        x = np.c_[np.ones((x.shape[0], 1)), x]
+
+        return x.dot(self.theta)

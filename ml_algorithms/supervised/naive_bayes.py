@@ -19,6 +19,7 @@ class NaiveBayesClassifier:
             
     def predict(self, x):
         y_pred = [self._predict(sample) for sample in x]
+        
         return y_pred
 
     def _predict(self, x):
