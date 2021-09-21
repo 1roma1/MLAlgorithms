@@ -3,8 +3,6 @@ import numpy as np
 class PCA:
     def __init__(self, n_components):
         self.n_components = n_components
-        self.components = None
-        self.mean = None
 
     def fit(self, x):
         self.mean = np.mean(x, axis=0)

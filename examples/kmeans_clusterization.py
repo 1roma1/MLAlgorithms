@@ -12,18 +12,18 @@ y = data.target
 
 y_pred = KMeans(n_clusters=3).predict(x)
 
-plt.figure(figsize=(9, 3.5))
+plt.gcf().suptitle("K-Mean Clusterization")
 
 plt.subplot(121)
 plt.scatter(x[:, 2], x[:, 3], c="k", marker=".")
 plt.xlabel("Petal length", fontsize=14)
-plt.tick_params(labelleft=False)
+plt.ylabel("Petal width", fontsize=14)
 
 plt.subplot(122)
 plt.plot(x[y_pred==0, 2], x[y_pred==0, 3], "yo", label="Cluster 1")
 plt.plot(x[y_pred==1, 2], x[y_pred==1, 3], "bs", label="Cluster 2")
 plt.plot(x[y_pred==2, 2], x[y_pred==2, 3], "g^", label="Cluster 3")
 plt.xlabel("Petal length", fontsize=14)
-plt.ylabel("Petal width", fontsize=14)
+
 plt.savefig('examples/figures/kmeans_plot.png')
 plt.show()
