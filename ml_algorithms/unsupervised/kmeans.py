@@ -61,5 +61,4 @@ class KMeans:
 
     def _is_converged(self, centroids_old, centroids):
         distances = [euclidean(centroids_old[i], centroids[i]) for i in range(self.n_clusters)]
-        
         return sum(distances) == 0

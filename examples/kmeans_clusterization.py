@@ -25,6 +25,5 @@ plt.plot(x[y_pred==1, 2], x[y_pred==1, 3], "bs", label="Cluster 2")
 plt.plot(x[y_pred==2, 2], x[y_pred==2, 3], "g^", label="Cluster 3")
 plt.xlabel("Petal length", fontsize=14)
 plt.ylabel("Petal width", fontsize=14)
-
+plt.savefig('examples/figures/kmeans_plot.png')
 plt.show()
-

@@ -21,3 +21,5 @@ Implementations of basic machine learning algorithms.
 ![image](examples/figures/linear_svm_boundary.png)
 ![image](examples/figures/decision_tree_boundary.png)
 ![image](examples/figures/pca_proj.png)
+![image](exampes/figures/kmeans_plot.png)
+![image](exampes/figures/softmax_boundary.png)

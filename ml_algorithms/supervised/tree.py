@@ -15,18 +15,17 @@ class Node:
 
 
 class DecisionTree:
-    def __init__(self, min_samples_split=2, max_depth=100, n_feats=None):
+    def __init__(self, min_samples_split=2, max_depth=100):
         self.min_samples_split = min_samples_split
         self.max_depth = max_depth
-        self.n_feats = n_feats
         self.root = None
         self._cost_function = None
     
     def fit(self, x, y):
-        self.n_feats = x.shape[1] if not self.n_feats else min(self.n_feats, x.shape[1])
-        self.root = self._grow_tree(x, y)
+        self.n_feats = x.shape[1]
+        self.root = self._build_tree(x, y)
 
-    def _grow_tree(self, x, y, depth=0):
+    def _build_tree(self, x, y, depth=0):
         n_samples, n_features = x.shape
         n_values = len(np.unique(y))
 
@@ -38,8 +37,8 @@ class DecisionTree:
 
         best_feat, best_thresh = self._best_criteria(x, y, feat_idxs)
         left_idxs, right_idxs = self._split(x[:, best_feat], best_thresh)
-        left = self._grow_tree(x[left_idxs, :], y[left_idxs], depth+1)
-        right = self._grow_tree(x[right_idxs, :], y[right_idxs], depth+1)
+        left = self._build_tree(x[left_idxs, :], y[left_idxs], depth+1)
+        right = self._build_tree(x[right_idxs, :], y[right_idxs], depth+1)
 
         return Node(best_feat, best_thresh, left, right)
 
@@ -83,8 +82,8 @@ class DecisionTree:
     
 
 class DecisionTreeClassifier(DecisionTree):
-    def __init__(self, min_samples_split=2, max_depth=100, n_feats=None):
-        super().__init__(min_samples_split, max_depth, n_feats)
+    def __init__(self, min_samples_split=2, max_depth=100):
+        super().__init__(min_samples_split, max_depth)
         self._cost_function = self._information_gain
 
     def _calculate_leaf_value(self, y):
@@ -117,8 +116,8 @@ class DecisionTreeClassifier(DecisionTree):
 
 
 class DecisionTreeRegressor(DecisionTree):
-    def __init__(self, min_samples_split=2, max_depth=100, n_feats=None):
-        super().__init__(min_samples_split, max_depth, n_feats)
+    def __init__(self, min_samples_split=2, max_depth=100):
+        super().__init__(min_samples_split, max_depth)
         self._cost_function = self._variance_reduction
 
     def _variance_reduction(self, y, x_column, split_thresh):
@@ -134,5 +133,5 @@ class DecisionTreeRegressor(DecisionTree):
         return reduction
 
     def _calculate_leaf_value(self, y):
-        val = np.mean(y)
+        val = np.mean(y, axis=0)
         return val 

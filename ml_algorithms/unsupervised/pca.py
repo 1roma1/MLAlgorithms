@@ -21,5 +21,4 @@ class PCA:
 
     def transform(self, x):
         x = x - self.mean
-        
         return np.dot(x, self.components.T)
